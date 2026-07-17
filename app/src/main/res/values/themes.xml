@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ===== BASE DARK THEME ===== -->
+    <style name="Theme.FitTrack" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/accent_red</item>
+        <item name="colorPrimaryVariant">@color/accent_red_dark</item>
+        <item name="colorOnPrimary">@color/text_primary</item>
+        <item name="colorSecondary">@color/accent_gold</item>
+        <item name="colorSecondaryVariant">@color/accent_gold</item>
+        <item name="colorOnSecondary">@color/text_on_gold</item>
+        <item name="colorSurface">@color/bg_card</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="android:colorBackground">@color/bg_primary</item>
+        <item name="android:windowBackground">@color/bg_primary</item>
+        <item name="android:statusBarColor">@color/bg_primary</item>
+        <item name="android:navigationBarColor">@color/bg_primary</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <!-- Force light window decorations to false (dark window) -->
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <!-- ===== SPLASH THEME ===== -->
+    <style name="Theme.FitTrack.Splash" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/accent_red</item>
+        <item name="android:statusBarColor">@color/bg_primary</item>
+        <item name="android:windowBackground">@color/bg_primary</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <!-- ===== BUTTON STYLES ===== -->
+    <style name="Widget.FitTrack.Button" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">14dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="backgroundTint">@color/accent_red</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="elevation">4dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+    </style>
+
+    <style name="Widget.FitTrack.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="cornerRadius">10dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
+        <item name="strokeColor">@color/accent_gold</item>
+        <item name="android:textColor">@color/accent_gold</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="Widget.FitTrack.Button.Delete" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="cornerRadius">10dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
+        <item name="strokeColor">@color/accent_red</item>
+        <item name="android:textColor">@color/accent_red</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="Widget.FitTrack.Button.Logout" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">14dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="backgroundTint">@color/bg_card</item>
+        <item name="strokeColor">@color/accent_red</item>
+        <item name="android:textColor">@color/accent_red</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="Widget.FitTrack.Button.Admin" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">14dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="backgroundTint">@color/accent_gold</item>
+        <item name="android:textColor">@color/text_on_gold</item>
+    </style>
+
+    <!-- ===== TEXT INPUT ===== -->
+    <style name="Widget.FitTrack.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxStrokeColor">@color/stroke_subtle</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="hintTextColor">@color/accent_gold</item>
+        <item name="boxBackgroundColor">@color/bg_input</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+    </style>
+
+    <!-- ===== CARD ===== -->
+    <style name="Widget.FitTrack.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">6dp</item>
+        <item name="contentPadding">0dp</item>
+        <item name="cardBackgroundColor">@color/bg_card</item>
+    </style>
+
+    <!-- ===== DATEPICKER ===== -->
+    <style name="Theme.FitTrack.DatePicker" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="colorPrimary">@color/accent_red</item>
+        <item name="colorOnPrimary">@color/text_primary</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <!-- ===== SPINNER ===== -->
+    <style name="Widget.FitTrack.Spinner" parent="Widget.AppCompat.Spinner.DropDown">
+        <item name="android:background">@drawable/bg_spinner</item>
+        <item name="android:textColor">@color/text_primary</item>
+    <!-- ===== BOTTOM NAV ===== -->
+    <style name="Widget.FitTrack.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="itemIconTint">@color/text_secondary</item>
+        <item name="itemTextColor">@color/text_secondary</item>
+        <item name="itemRippleColor">@color/accent_red_light</item>
+        <item name="android:background">@color/bg_secondary</item>
+        <item name="elevation">8dp</item>
+    </style>
+
+</resources>

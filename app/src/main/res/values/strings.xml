@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">FitTrack</string>
+    <string name="app_tagline">Gym Workout Progress Tracker</string>
+    <string name="splash_title">FitTrack</string>
+    <string name="splash_subtitle">Gym Workout Progress Tracker</string>
+    <string name="register_title">Create Account</string>
+    <string name="register_subtitle">Start your fitness journey today</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="btn_register">Create Account</string>
+    <string name="already_have_account">Already have an account? Sign In</string>
+    <string name="login_title">Welcome Back!</string>
+    <string name="login_subtitle">Sign in to continue your fitness journey</string>
+    <string name="btn_login">Sign In</string>
+    <string name="dont_have_account">Don\'t have an account? Sign Up</string>
+    <string name="demo_credentials_title">Demo Credentials</string>
+    <string name="demo_admin">Admin: admin / admin123</string>
+    <string name="demo_user">User: john / user123</string>
+    <string name="dashboard_title">FitTrack</string>
+    <string name="dashboard_greeting">Welcome back!</string>
+    <string name="dashboard_subtitle">What would you like to do today?</string>
+    <string name="card_add_workout">Add Workout</string>
+    <string name="card_add_workout_desc">Record a new exercise</string>
+    <string name="card_workout_history">History</string>
+    <string name="card_workout_history_desc">View past workouts</string>
+    <string name="card_personal_records">Records</string>
+    <string name="card_personal_records_desc">Your best lifts</string>
+    <string name="card_profile">Profile</string>
+    <string name="card_profile_desc">Account settings</string>
+    <string name="card_admin_panel">Admin Panel</string>
+    <string name="card_admin_panel_desc">Manage all users</string>
+    <string name="add_workout_title">Add Workout</string>
+    <string name="edit_workout_title">Edit Workout</string>
+    <string name="hint_exercise_name">Exercise Name</string>
+    <string name="label_muscle_group">Muscle Group</string>
+    <string name="hint_weight">Weight (kg)</string>
+    <string name="hint_sets">Sets</string>
+    <string name="hint_reps">Reps</string>
+    <string name="hint_duration">Duration (minutes)</string>
+    <string name="hint_date">Workout Date</string>
+    <string name="hint_notes">Notes (optional)</string>
+    <string name="btn_save_workout">Save Workout</string>
+    <string name="btn_update_workout">Update Workout</string>
+    <string name="select_muscle_group">Select Muscle Group</string>
+    <string name="workout_history_title">Workout History</string>
+    <string name="empty_history">No workouts recorded yet.\nTap + to add your first workout!</string>
+    <string name="search_workouts">Search by exercise name…</string>
+    <string name="personal_records_title">Personal Records</string>
+    <string name="empty_records">No records yet.\nLog workouts to see your personal bests!</string>
+    <string name="personal_best">Personal Best</string>
+    <string name="profile_title">My Profile</string>
+    <string name="total_workouts">Total Workouts Logged</string>
+    <string name="btn_logout">Sign Out</string>
+    <string name="label_role">Role</string>
+    <string name="role_admin">Admin</string>
+    <string name="role_user">User</string>
+    <string name="admin_panel_title">Admin Panel</string>
+    <string name="admin_subtitle">Manage all registered users</string>
+    <string name="no_users">No users registered yet.</string>
+    <string name="all_users_title">All Users</string>
+    <string name="workouts_count">workouts</string>
+    <string name="delete_title">Delete Workout</string>
+    <string name="delete_message">Are you sure you want to delete this workout? This action cannot be undone.</string>
+    <string name="delete_confirm">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="logout_confirm_title">Sign Out</string>
+    <string name="logout_confirm_message">Are you sure you want to sign out?</string>
+    <string name="action_logout">Sign Out</string>
+    <string name="action_search">Search</string>
+    <string name="error_username_required">Username is required</string>
+    <string name="error_password_required">Password is required</string>
+    <string name="error_password_length">Password must be at least 6 characters</string>
+    <string name="error_passwords_mismatch">Passwords do not match</string>
+    <string name="error_invalid_credentials">Invalid username or password</string>
+    <string name="error_exercise_required">Exercise name is required</string>
+    <string name="error_muscle_group_required">Please select a muscle group</string>
+    <string name="error_weight_required">Weight is required</string>
+    <string name="error_sets_required">Sets is required</string>
+    <string name="error_reps_required">Reps is required</string>
+    <string name="error_duration_required">Duration is required</string>
+    <string name="error_date_required">Workout date is required</string>
+    <string name="error_user_exists">Username already exists. Please choose another.</string>
+    <string name="registration_success">Account created successfully! Please sign in.</string>
+    <string name="login_success">Welcome back!</string>
+    <string name="workout_saved">Workout saved successfully!</string>
+    <string name="workout_updated">Workout updated successfully!</string>
+    <string name="workout_deleted">Workout deleted.</string>
+    <string name="logout_success">Signed out successfully.</string>
+    <string name="error_empty_fields">Please fill in all required fields.</string>
+    <string name="update_success">Workout updated successfully!</string>
+    <string name="save_success">Workout saved successfully!</string>
+    <string name="delete_workout_title">Delete Workout</string>
+    <string name="delete_workout_message">Are you sure you want to delete this workout?</string>
+    <string name="delete_success">Workout deleted.</string>
+    <string-array name="muscle_groups">
+        <item>Select Muscle Group</item>
+        <item>Chest</item>
+        <item>Back</item>
+        <item>Shoulders</item>
+        <item>Biceps</item>
+        <item>Triceps</item>
+        <item>Legs</item>
+        <item>Core / Abs</item>
+        <item>Full Body</item>
+        <item>Cardio</item>
+        <item>Other</item>
+    </string-array>
+    <string name="nav_home">Home</string>
+    <string name="nav_analytics">Analytics</string>
+    <string name="nav_add">Add</string>
+    <string name="nav_calendar">Calendar</string>
+    <string name="nav_profile">Profile</string>
+    <string name="stat_streak">Streak</string>
+    <string name="stat_total_workouts">Workouts</string>
+    <string name="stat_volume">Volume (kg)</string>
+    <string name="stat_time">Time (min)</string>
+    <string name="stat_prs">PRs</string>
+    <string name="stat_photos">Photos</string>
+    <string name="stat_fav_exercise">Fav Exercise</string>
+    <string name="stat_weekly_goal">Weekly Goal</string>
+    <string name="analytics_title">Analytics</string>
+    <string name="analytics_score">Fitness Score</string>
+    <string name="analytics_score_desc">Based on consistency, frequency, duration, and volume.</string>
+    <string name="chart_frequency">Workout Frequency</string>
+    <string name="chart_volume">Training Volume</string>
+    <string name="chart_duration">Workout Duration</string>
+    <string name="chart_muscle">Muscle Distribution</string>
+    <string name="progress_title">Exercise Progress</string>
+    <string name="progress_current">Current</string>
+    <string name="progress_best">Best</string>
+    <string name="progress_1rm">Est. 1RM</string>
+    <string name="calendar_title">Workout Calendar</string>
+    <string name="calendar_rest">Rest Day</string>
+    <string name="calendar_workout">Workout Day</string>
+    <string name="achievements_title">Achievements</string>
+    <string name="achievements_locked">Locked</string>
+    <string name="achievements_unlocked">Unlocked</string>
+    <string name="goals_title">My Goals</string>
+    <string name="goals_weekly">Weekly Workouts</string>
+    <string name="goals_monthly">Monthly Workouts</string>
+    <string name="goals_weight">Target Weight (kg)</string>
+    <string name="goals_duration">Target Duration (min)</string>
+    <string name="btn_save_goals">Save Goals</string>
+    <string name="gallery_title">Progress Photos</string>
+    <string name="gallery_empty">No progress photos yet.</string>
+    <string name="insights_title">Smart Insights</string>
+    <string name="na">N/A</string>
+</resources>
