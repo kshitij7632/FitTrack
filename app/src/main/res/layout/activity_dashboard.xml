@@ -96,7 +96,7 @@
                         android:textColor="@color/text_primary"
                         android:textSize="14sp"
                         android:textStyle="italic"
-                        tools:text='"The only bad workout is the one that didn'\''t happen."' />
+                        tools:text="&quot;The only bad workout is the one that didn&apos;t happen.&quot;" />
                 </LinearLayout>
             </FrameLayout>
 

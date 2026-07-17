@@ -113,6 +113,7 @@
     <style name="Widget.FitTrack.Spinner" parent="Widget.AppCompat.Spinner.DropDown">
         <item name="android:background">@drawable/bg_spinner</item>
         <item name="android:textColor">@color/text_primary</item>
+    </style>
     <!-- ===== BOTTOM NAV ===== -->
     <style name="Widget.FitTrack.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
         <item name="itemIconTint">@color/text_secondary</item>

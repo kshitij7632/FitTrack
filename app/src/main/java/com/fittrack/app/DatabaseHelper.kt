@@ -41,6 +41,24 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 $COL_USERNAME TEXT DEFAULT ''
             )
         """.trimIndent())
+        db.execSQL("""
+            CREATE TABLE Goals (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT,
+                weeklyWorkoutGoal INTEGER DEFAULT 4,
+                monthlyWorkoutGoal INTEGER DEFAULT 16,
+                targetWeight REAL DEFAULT 0,
+                targetDuration INTEGER DEFAULT 60
+            )
+        """.trimIndent())
+        db.execSQL("""
+            CREATE TABLE Achievements (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT,
+                achievementKey TEXT,
+                unlockedAt TEXT
+            )
+        """.trimIndent())
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -955,18 +973,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.close()
     }
 
-    fun getProgressPhotoCount(username: String): Int {
-        val db = readableDatabase
-        val cursor = db.rawQuery(
-            "SELECT COUNT(*) FROM $TABLE_NAME WHERE $COL_USERNAME = ? AND $COL_IMAGE_PATH != ''",
-            arrayOf(username)
-        )
-        var count = 0
-        if (cursor.moveToFirst()) count = cursor.getInt(0)
-        cursor.close()
-        db.close()
-        return count
-    }
+
 
     // ─── PRIVATE ────────────────────────────────────────────────────────────
 

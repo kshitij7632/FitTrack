@@ -145,7 +145,7 @@ class CalendarActivity : AppCompatActivity() {
             rvDayWorkouts.visibility = View.GONE
             tvEmptyDay.visibility = View.VISIBLE
         } else {
-            workoutAdapter = WorkoutAdapter(workouts, {
+            workoutAdapter = WorkoutAdapter(workouts.toMutableList(), {
                 // Edit
                 val intent = Intent(this, AddWorkoutActivity::class.java)
                 intent.putExtra("WORKOUT_ID", it.id)
@@ -156,6 +156,11 @@ class CalendarActivity : AppCompatActivity() {
                 workoutDates = dbHelper.getWorkoutDatesSet(username)
                 updateCalendar()
                 onDaySelected(date) // refresh list
+            }, {
+                // Item Click
+                val intent = Intent(this, WorkoutDetailActivity::class.java)
+                intent.putExtra("WORKOUT_ID", it.id)
+                startActivity(intent)
             })
             rvDayWorkouts.adapter = workoutAdapter
             rvDayWorkouts.visibility = View.VISIBLE
