@@ -12,11 +12,75 @@
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/bg_secondary"
-        app:title="@string/gallery_title"
+        app:title="Progress Photos"
         app:titleTextColor="@color/text_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/llFilters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@id/toolbarGallery">
+
+        <HorizontalScrollView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:singleLine="true"
+                app:singleSelection="true">
+                
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCatAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="All"
+                    style="@style/Widget.MaterialComponents.Chip.Choice" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCatFront"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Front"
+                    style="@style/Widget.MaterialComponents.Chip.Choice" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCatBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Back"
+                    style="@style/Widget.MaterialComponents.Chip.Choice" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCatSide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Side"
+                    style="@style/Widget.MaterialComponents.Chip.Choice" />
+
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCompare"
+            style="@style/Widget.FitTrack.Button.Outlined"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Compare"
+            android:layout_marginStart="8dp" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvGallery"
@@ -24,7 +88,7 @@
         android:layout_height="0dp"
         android:padding="4dp"
         android:clipToPadding="false"
-        app:layout_constraintTop_toBottomOf="@id/toolbarGallery"
+        app:layout_constraintTop_toBottomOf="@id/llFilters"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -33,12 +97,12 @@
         android:id="@+id/tvEmptyGallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/gallery_empty"
+        android:text="No photos found."
         android:textAlignment="center"
         android:textColor="@color/text_secondary"
         android:layout_marginTop="32dp"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/toolbarGallery" />
+        app:layout_constraintTop_toBottomOf="@id/llFilters" />
         
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddPhoto"

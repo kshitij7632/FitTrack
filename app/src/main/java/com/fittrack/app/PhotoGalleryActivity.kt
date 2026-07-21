@@ -8,14 +8,18 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.io.File
 import java.io.IOException
@@ -31,11 +35,15 @@ class PhotoGalleryActivity : AppCompatActivity() {
     private lateinit var tvEmptyGallery: TextView
     private lateinit var currentPhotoPath: String
     private var username = "User"
+    private var allPhotos = listOf<ProgressPhoto>()
+    private var currentCategory = "All"
+
+    private var pendingCategory = "front"
 
     private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val date = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date())
-            dbHelper.saveProgressPhoto(username, date, currentPhotoPath)
+            dbHelper.saveProgressPhoto(username, date, currentPhotoPath, category = pendingCategory)
             Toast.makeText(this, "Photo saved!", Toast.LENGTH_SHORT).show()
             loadPhotos()
         }
@@ -60,19 +68,46 @@ class PhotoGalleryActivity : AppCompatActivity() {
         rvGallery.layoutManager = GridLayoutManager(this, 3)
 
         findViewById<FloatingActionButton>(R.id.fabAddPhoto).setOnClickListener {
-            dispatchTakePictureIntent()
+            showAddPhotoDialog()
         }
 
+        findViewById<Button>(R.id.btnCompare).setOnClickListener {
+            val intent = Intent(this, PhotoCompareActivity::class.java)
+            startActivity(intent)
+        }
+
+        setupChips()
         loadPhotos()
     }
 
+    private fun setupChips() {
+        val chipGroup = findViewById<ChipGroup>(R.id.chipGroupCategory)
+        chipGroup.check(R.id.chipCatAll)
+        chipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+            if (checkedIds.isEmpty()) return@setOnCheckedStateChangeListener
+            val chip = findViewById<Chip>(checkedIds[0])
+            currentCategory = chip.text.toString()
+            filterPhotos()
+        }
+    }
+
     private fun loadPhotos() {
-        val photos = dbHelper.getProgressPhotos(username)
-        if (photos.isEmpty()) {
+        allPhotos = dbHelper.getProgressPhotos(username)
+        filterPhotos()
+    }
+
+    private fun filterPhotos() {
+        val filtered = if (currentCategory == "All") {
+            allPhotos
+        } else {
+            allPhotos.filter { it.category.equals(currentCategory, ignoreCase = true) }
+        }
+
+        if (filtered.isEmpty()) {
             rvGallery.visibility = View.GONE
             tvEmptyGallery.visibility = View.VISIBLE
         } else {
-            val adapter = PhotoAdapter(photos) { path ->
+            val adapter = PhotoAdapter(filtered) { path ->
                 val intent = Intent(this, FullScreenImageActivity::class.java)
                 intent.putExtra("IMAGE_PATH", path)
                 startActivity(intent)
@@ -81,6 +116,17 @@ class PhotoGalleryActivity : AppCompatActivity() {
             rvGallery.visibility = View.VISIBLE
             tvEmptyGallery.visibility = View.GONE
         }
+    }
+
+    private fun showAddPhotoDialog() {
+        val categories = arrayOf("Front", "Back", "Side")
+        AlertDialog.Builder(this)
+            .setTitle("Select Category")
+            .setItems(categories) { _, which ->
+                pendingCategory = categories[which].lowercase(Locale.getDefault())
+                dispatchTakePictureIntent()
+            }
+            .show()
     }
 
     private fun dispatchTakePictureIntent() {

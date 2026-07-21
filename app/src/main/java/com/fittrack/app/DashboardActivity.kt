@@ -30,6 +30,8 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var prefs: SharedPreferences
     private lateinit var dbHelper: DatabaseHelper
     private lateinit var insightsEngine: InsightsEngine
+    private lateinit var adaptiveInsightsEngine: AdaptiveInsightsEngine
+    private lateinit var localReminderEngine: LocalReminderEngine
     private lateinit var achievementChecker: AchievementChecker
 
     private lateinit var tvGreeting: TextView
@@ -65,6 +67,8 @@ class DashboardActivity : AppCompatActivity() {
         prefs = getSharedPreferences("FitTrackPrefs", MODE_PRIVATE)
         dbHelper = DatabaseHelper(this)
         insightsEngine = InsightsEngine(this)
+        adaptiveInsightsEngine = AdaptiveInsightsEngine(this)
+        localReminderEngine = LocalReminderEngine(this)
         achievementChecker = AchievementChecker(this)
 
         toolbar = findViewById(R.id.toolbarDashboard)
@@ -80,6 +84,16 @@ class DashboardActivity : AppCompatActivity() {
         bottomNav.selectedItemId = R.id.nav_home
         val username = prefs.getString("loggedInUser", "User") ?: "User"
         achievementChecker.checkAndUnlockAchievements(username)
+
+        // Redirect new users to workout setup wizard
+        val setupCompleted = prefs.getBoolean("setup_completed", false)
+        val hasAnyData = dbHelper.getTotalWorkoutCount(username) > 0 || dbHelper.getActiveSplit(username) != null
+        if (!setupCompleted && !hasAnyData) {
+            startActivity(Intent(this, WorkoutPlannerSetupActivity::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            return
+        }
+
         loadDashboardData()
     }
 
@@ -193,19 +207,103 @@ class DashboardActivity : AppCompatActivity() {
         val prsCount = dbHelper.getPersonalRecordsCount(username)
         tvProgress.text = prsCount.toString()
         
-        // Load insights
+        // Load adaptive insights (new engine first, fallback to legacy)
         insightsContainer.removeAllViews()
-        val insights = insightsEngine.getInsights(username)
-        for (insight in insights) {
-            val view = layoutInflater.inflate(R.layout.item_insight, insightsContainer, false)
-            view.findViewById<TextView>(R.id.tvInsightText).text = insight
-            insightsContainer.addView(view)
+        try {
+            val adaptiveInsights = adaptiveInsightsEngine.getInsights(username)
+            if (adaptiveInsights.isNotEmpty()) {
+                for (insight in adaptiveInsights) {
+                    val view = layoutInflater.inflate(R.layout.item_insight, insightsContainer, false)
+                    val text = "${insight.emoji}  ${insight.title}: ${insight.message}"
+                    view.findViewById<TextView>(R.id.tvInsightText).text = text
+                    insightsContainer.addView(view)
+                }
+            } else {
+                val legacyInsights = insightsEngine.getInsights(username)
+                for (insight in legacyInsights) {
+                    val view = layoutInflater.inflate(R.layout.item_insight, insightsContainer, false)
+                    view.findViewById<TextView>(R.id.tvInsightText).text = insight
+                    insightsContainer.addView(view)
+                }
+            }
+        } catch (e: Exception) {
+            val legacyInsights = insightsEngine.getInsights(username)
+            for (insight in legacyInsights) {
+                val view = layoutInflater.inflate(R.layout.item_insight, insightsContainer, false)
+                view.findViewById<TextView>(R.id.tvInsightText).text = insight
+                insightsContainer.addView(view)
+            }
         }
+
+        // Load Today's Workout smart card
+        loadTodayWorkoutCard(username)
+    }
+
+    private fun loadTodayWorkoutCard(username: String) {
+        try {
+            val cardTodayWorkout = findViewById<MaterialCardView?>(R.id.cardTodayWorkout) ?: return
+            val tvTodayWorkoutName = cardTodayWorkout.findViewById<TextView?>(R.id.tvTodayWorkoutName) ?: return
+            val tvTodayWorkoutMuscles = cardTodayWorkout.findViewById<TextView?>(R.id.tvTodayWorkoutMuscles) ?: return
+            val tvTodayWorkoutStatus = cardTodayWorkout.findViewById<TextView?>(R.id.tvTodayWorkoutStatus) ?: return
+            val btnStartTodayWorkout = cardTodayWorkout.findViewById<MaterialButton?>(R.id.btnStartTodayWorkout) ?: return
+
+            val sdf = java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault())
+            val today = sdf.format(java.util.Date())
+            val todaySessions = dbHelper.getSessionsOnDate(username, today)
+            val todayWorkoutDay = dbHelper.getTodayScheduledWorkoutDay(username)
+
+            cardTodayWorkout.visibility = View.VISIBLE
+
+            when {
+                todaySessions.isNotEmpty() -> {
+                    val session = todaySessions.first()
+                    tvTodayWorkoutName.text = "✅ ${session.workoutDayName}"
+                    tvTodayWorkoutMuscles.text = "Completed • ${String.format("%,.0f", session.totalVolume)} kg volume"
+                    tvTodayWorkoutStatus.text = "${session.durationMinutes} min • ${session.caloriesBurned} cal"
+                    btnStartTodayWorkout.text = "View Session"
+                    btnStartTodayWorkout.setOnClickListener {
+                        startActivity(Intent(this, WorkoutHistoryActivity::class.java))
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    }
+                }
+                todayWorkoutDay != null -> {
+                    tvTodayWorkoutName.text = "💪 ${todayWorkoutDay.dayName}"
+                    tvTodayWorkoutMuscles.text = todayWorkoutDay.muscleGroups
+                    tvTodayWorkoutStatus.text = "~${todayWorkoutDay.estimatedDuration} min"
+                    btnStartTodayWorkout.text = "Start Workout →"
+                    btnStartTodayWorkout.setOnClickListener {
+                        val intent = Intent(this, StartWorkoutActivity::class.java)
+                        intent.putExtra("WORKOUT_DAY_ID", todayWorkoutDay.id)
+                        startActivity(intent)
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    }
+                }
+                else -> {
+                    tvTodayWorkoutName.text = "😴 Rest Day"
+                    tvTodayWorkoutMuscles.text = "Recovery is part of the process"
+                    tvTodayWorkoutStatus.text = "No workout planned"
+                    btnStartTodayWorkout.text = "Log Anyway"
+                    btnStartTodayWorkout.setOnClickListener {
+                        startActivity(Intent(this, MySplitsActivity::class.java))
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+                    }
+                }
+            }
+        } catch (e: Exception) { e.printStackTrace() }
     }
 
     private fun setupClickListeners() {
         findViewById<FloatingActionButton>(R.id.fabAddWorkout).setOnClickListener {
-            startActivity(Intent(this, AddWorkoutActivity::class.java))
+            // Check if planning exists, if so show quick start options
+            val username = prefs.getString("loggedInUser", "") ?: ""
+            val todayWorkoutDay = try { dbHelper.getTodayScheduledWorkoutDay(username) } catch (e: Exception) { null }
+            if (todayWorkoutDay != null) {
+                val intent = Intent(this, StartWorkoutActivity::class.java)
+                intent.putExtra("WORKOUT_DAY_ID", todayWorkoutDay.id)
+                startActivity(intent)
+            } else {
+                startActivity(Intent(this, AddWorkoutActivity::class.java))
+            }
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
         
@@ -219,25 +317,27 @@ class DashboardActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
         }
         
-        findViewById<MaterialCardView>(R.id.cardGoals).setOnClickListener {
-            startActivity(Intent(this, GoalsActivity::class.java))
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        }
-        
-        findViewById<MaterialCardView>(R.id.cardAchievements).setOnClickListener {
-            startActivity(Intent(this, AchievementsActivity::class.java))
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        }
-        
-        findViewById<MaterialCardView>(R.id.cardPhotos).setOnClickListener {
-            startActivity(Intent(this, PhotoGalleryActivity::class.java))
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        }
-        
-        findViewById<MaterialCardView>(R.id.cardProgress).setOnClickListener {
-            startActivity(Intent(this, ProgressActivity::class.java))
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
-        }
+        try {
+            findViewById<MaterialCardView>(R.id.cardGoals).setOnClickListener {
+                startActivity(Intent(this, GoalsActivity::class.java))
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            }
+            
+            findViewById<MaterialCardView>(R.id.cardAchievements).setOnClickListener {
+                startActivity(Intent(this, AchievementsActivity::class.java))
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            }
+            
+            findViewById<MaterialCardView>(R.id.cardPhotos).setOnClickListener {
+                startActivity(Intent(this, PhotoGalleryActivity::class.java))
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            }
+            
+            findViewById<MaterialCardView>(R.id.cardProgress).setOnClickListener {
+                startActivity(Intent(this, ProgressActivity::class.java))
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+            }
+        } catch (e: Exception) { e.printStackTrace() }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

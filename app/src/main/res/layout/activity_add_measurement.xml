@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_primary">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="32dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarAddMeasurement"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/bg_primary"
+            app:title="Log Measurements"
+            app:titleTextColor="@color/text_primary"
+            app:navigationIconTint="@color/text_primary" />
+
+        <!-- Date/Time -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="8dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.FitTrack.TextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:hint="Date">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMeasDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.FitTrack.TextInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Time">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMeasTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!-- Body Weight -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="BODY COMPOSITION" android:textColor="@color/accent_gold" android:textSize="11sp" android:textStyle="bold" android:letterSpacing="0.1" android:paddingHorizontal="16dp" android:paddingBottom="8dp" android:paddingTop="8dp" />
+
+        <com.google.android.material.textfield.TextInputLayout style="@style/Widget.FitTrack.TextInputLayout" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="16dp" android:layout_marginBottom="10dp" android:hint="Body Weight (kg)">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/etBodyWeight" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:textColor="@color/text_primary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout style="@style/Widget.FitTrack.TextInputLayout" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="16dp" android:layout_marginBottom="10dp" android:hint="Body Fat % (Optional)">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/etBodyFat" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:textColor="@color/text_primary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Upper Body -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="UPPER BODY (cm)" android:textColor="@color/accent_gold" android:textSize="11sp" android:textStyle="bold" android:letterSpacing="0.1" android:paddingHorizontal="16dp" android:paddingBottom="8dp" android:paddingTop="8dp" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingHorizontal="16dp" android:layout_marginBottom="10dp">
+            <com.google.android.material.textfield.TextInputLayout style="@style/Widget.FitTrack.TextInputLayout" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp" android:hint="Chest">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etChest" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout style="@style/Widget.FitTrack.TextInputLayout" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="Waist">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etWaist" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingHorizontal="16dp" android:layout_marginBottom="10dp">
+            <com.google.android.material.textfield.TextInputLayout style="@style/Widget.FitTrack.TextInputLayout" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp" android:hint="Hips">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etHips" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout style="@style/Widget.FitTrack.TextInputLayout" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="Shoulders">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etShoulder" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- Arms -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ARMS (cm)" android:textColor="@color/accent_gold" android:textSize="11sp" android:textStyle="bold" android:letterSpacing="0.1" android:paddingHorizontal="16dp" android:paddingBottom="8dp" android:paddingTop="8dp" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingHorizontal="16dp" android:layout_marginBottom="10dp">
+            <com.google.android.material.textfield.TextInputLayout style="@style/Widget.FitTrack.TextInputLayout" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp" android:hint="Left Arm">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etLeftArm" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout style="@style/Widget.FitTrack.TextInputLayout" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="Right Arm">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etRightArm" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingHorizontal="16dp" android:layout_marginBottom="10dp">
+            <com.google.android.material.textfield.TextInputLayout style="@style/Widget.FitTrack.TextInputLayout" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp" android:hint="Left Forearm">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etLeftForearm" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout style="@style/Widget.FitTrack.TextInputLayout" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="Right Forearm">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etRightForearm" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- Neck -->
+        <com.google.android.material.textfield.TextInputLayout style="@style/Widget.FitTrack.TextInputLayout" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="16dp" android:layout_marginBottom="10dp" android:hint="Neck (cm)">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/etNeck" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:textColor="@color/text_primary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Lower Body -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="LOWER BODY (cm)" android:textColor="@color/accent_gold" android:textSize="11sp" android:textStyle="bold" android:letterSpacing="0.1" android:paddingHorizontal="16dp" android:paddingBottom="8dp" android:paddingTop="8dp" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingHorizontal="16dp" android:layout_marginBottom="10dp">
+            <com.google.android.material.textfield.TextInputLayout style="@style/Widget.FitTrack.TextInputLayout" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp" android:hint="Left Thigh">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etLeftThigh" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout style="@style/Widget.FitTrack.TextInputLayout" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="Right Thigh">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etRightThigh" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingHorizontal="16dp" android:layout_marginBottom="10dp">
+            <com.google.android.material.textfield.TextInputLayout style="@style/Widget.FitTrack.TextInputLayout" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp" android:hint="Left Calf">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etLeftCalf" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout style="@style/Widget.FitTrack.TextInputLayout" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="Right Calf">
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etRightCalf" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="numberDecimal" android:textColor="@color/text_primary" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- Notes -->
+        <com.google.android.material.textfield.TextInputLayout style="@style/Widget.FitTrack.TextInputLayout" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="16dp" android:layout_marginBottom="20dp" android:hint="Notes (Optional)">
+            <com.google.android.material.textfield.TextInputEditText android:id="@+id/etMeasNotes" android:layout_width="match_parent" android:layout_height="wrap_content" android:minLines="2" android:textColor="@color/text_primary" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSaveMeasurement"
+            style="@style/Widget.FitTrack.Button"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="16dp"
+            android:text="Save Measurements" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

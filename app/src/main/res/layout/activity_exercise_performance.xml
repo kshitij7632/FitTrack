@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_primary">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="32dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarExercisePerformance"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/bg_primary"
+            app:titleTextColor="@color/text_primary"
+            app:navigationIconTint="@color/text_primary" />
+
+        <!-- Overview Header -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.FitTrack.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvPerfExerciseName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bench Press"
+                    android:textColor="@color/text_primary"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="4dp">
+                    <TextView android:id="@+id/tvPerfMuscleGroup" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Chest" android:textColor="@color/accent_red" android:textSize="13sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=" • " android:textColor="@color/text_secondary" android:textSize="13sp" />
+                    <TextView android:id="@+id/tvPerfEquipment" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Barbell" android:textColor="@color/text_secondary" android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="12dp">
+                    <TextView android:id="@+id/tvPerfTimesPerformed" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="0 sessions" android:textColor="@color/text_secondary" android:textSize="13sp" />
+                    <TextView android:id="@+id/tvPerfLastPerformed" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Last: —" android:textColor="@color/text_secondary" android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="4dp">
+                    <TextView android:id="@+id/tvPerfCurrentPR" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="PR: —" android:textColor="@color/accent_gold" android:textSize="13sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/tvPerf1RM" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="est. 1RM: —" android:textColor="@color/text_secondary" android:textSize="13sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Stat Cards Row -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingHorizontal="16dp" android:layout_marginBottom="12dp">
+
+            <com.google.android.material.card.MaterialCardView style="@style/Widget.FitTrack.CardView" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:padding="12dp">
+                    <TextView android:id="@+id/tvStatCurrentWeight" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textColor="@color/accent_red" android:textSize="18sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Current" android:textColor="@color/text_secondary" android:textSize="11sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView style="@style/Widget.FitTrack.CardView" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:padding="12dp">
+                    <TextView android:id="@+id/tvStatBestWeight" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textColor="@color/accent_gold" android:textSize="18sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Best" android:textColor="@color/text_secondary" android:textSize="11sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView style="@style/Widget.FitTrack.CardView" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:padding="12dp">
+                    <TextView android:id="@+id/tvStatAvgWeight" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textColor="@color/text_primary" android:textSize="18sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Avg" android:textColor="@color/text_secondary" android:textSize="11sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:paddingHorizontal="16dp" android:layout_marginBottom="16dp">
+
+            <com.google.android.material.card.MaterialCardView style="@style/Widget.FitTrack.CardView" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:padding="12dp">
+                    <TextView android:id="@+id/tvStatTotalVolume" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textColor="@color/accent_red" android:textSize="16sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Total Volume" android:textColor="@color/text_secondary" android:textSize="11sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView style="@style/Widget.FitTrack.CardView" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginEnd="8dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:padding="12dp">
+                    <TextView android:id="@+id/tvStatMaxReps" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textColor="@color/accent_gold" android:textSize="18sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Max Reps" android:textColor="@color/text_secondary" android:textSize="11sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView style="@style/Widget.FitTrack.CardView" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:padding="12dp">
+                    <TextView android:id="@+id/tvStatTotalSets" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="—" android:textColor="@color/text_primary" android:textSize="18sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Total Sets" android:textColor="@color/text_secondary" android:textSize="11sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+        <!-- Progressive Overload -->
+        <com.google.android.material.card.MaterialCardView style="@style/Widget.FitTrack.CardView" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="16dp" android:layout_marginBottom="16dp" app:strokeColor="@color/accent_gold" app:strokeWidth="1dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="14dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PROGRESSIVE OVERLOAD" android:textColor="@color/accent_gold" android:textSize="11sp" android:textStyle="bold" android:letterSpacing="0.1" android:layout_marginBottom="6dp" />
+                <TextView android:id="@+id/tvOverloadSuggestion" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Loading..." android:textColor="@color/text_primary" android:textSize="14sp" android:lineSpacingMultiplier="1.4" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Charts -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PERFORMANCE CHARTS" android:textColor="@color/accent_gold" android:textSize="11sp" android:textStyle="bold" android:letterSpacing="0.12" android:paddingHorizontal="20dp" android:layout_marginBottom="8dp" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabsChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="8dp"
+            app:tabMode="scrollable"
+            app:tabGravity="start"
+            app:tabSelectedTextColor="@color/accent_red"
+            app:tabTextColor="@color/text_secondary"
+            app:tabIndicatorColor="@color/accent_red"
+            app:tabBackground="@color/bg_card">
+
+            <com.google.android.material.tabs.TabItem android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Weight" />
+            <com.google.android.material.tabs.TabItem android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Volume" />
+            <com.google.android.material.tabs.TabItem android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Est. 1RM" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chartExerciseWeight"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/bg_card" />
+
+        <!-- PR History -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PERSONAL RECORD TIMELINE" android:textColor="@color/accent_gold" android:textSize="11sp" android:textStyle="bold" android:letterSpacing="0.12" android:paddingHorizontal="20dp" android:layout_marginBottom="8dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPRHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp"
+            android:nestedScrollingEnabled="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <!-- Milestones -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="MILESTONES" android:textColor="@color/accent_gold" android:textSize="11sp" android:textStyle="bold" android:letterSpacing="0.12" android:paddingHorizontal="20dp" android:layout_marginBottom="8dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMilestones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:nestedScrollingEnabled="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <!-- Comparison -->
+        <com.google.android.material.card.MaterialCardView style="@style/Widget.FitTrack.CardView" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginHorizontal="16dp" android:layout_marginBottom="16dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="14dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="WEEK COMPARISON" android:textColor="@color/accent_gold" android:textSize="11sp" android:textStyle="bold" android:letterSpacing="0.1" android:layout_marginBottom="6dp" />
+                <TextView android:id="@+id/tvComparisonSummary" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Loading..." android:textColor="@color/text_primary" android:textSize="14sp" android:lineSpacingMultiplier="1.4" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Training History -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SESSION HISTORY" android:textColor="@color/accent_gold" android:textSize="11sp" android:textStyle="bold" android:letterSpacing="0.12" android:paddingHorizontal="20dp" android:layout_marginBottom="8dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvExerciseHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:nestedScrollingEnabled="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

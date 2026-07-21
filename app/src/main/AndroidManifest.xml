@@ -43,6 +43,27 @@
         <activity android:name=".AchievementsActivity" android:exported="false" />
         <activity android:name=".GoalsActivity" android:exported="false" />
 
+        <!-- Phase 3: Workout Planning Flow -->
+        <activity android:name=".WorkoutPlannerSetupActivity" android:exported="false" />
+        <activity android:name=".MySplitsActivity" android:exported="false" />
+        <activity android:name=".SplitEditorActivity" android:exported="false" />
+        <activity android:name=".WorkoutDayEditorActivity" android:exported="false" />
+        <activity android:name=".WeeklyScheduleActivity" android:exported="false" />
+        <activity android:name=".StartWorkoutActivity" android:exported="false" />
+        <activity android:name=".WorkoutCompleteActivity" android:exported="false" />
+
+        <!-- Phase 5: Measurements & Physique -->
+        <activity android:name=".MeasurementsActivity" android:exported="false" />
+        <activity android:name=".AddMeasurementActivity" android:exported="false" />
+        <activity android:name=".PhysiquePeriodActivity" android:exported="false" />
+        <activity android:name=".PhotoCompareActivity" android:exported="false" />
+
+        <!-- Phase 6: Exercise Performance Dashboard -->
+        <activity android:name=".ExerciseLibraryActivity" android:exported="false" />
+        <activity android:name=".ExercisePerformanceActivity" android:exported="false" />
+
+        <!-- Phase 7: Export & Backup -->
+        <activity android:name=".ExportActivity" android:exported="false" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -52,6 +73,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
 
     </application>
 
